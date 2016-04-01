@@ -1,0 +1,21 @@
+<h1>Threads!</h1>
+
+
+<div>
+  <label>New Thread:</label>
+  <input type="text" ng-model='newThread.subject' placeholder="Subject">
+  <button class="btn tbn-default" ng-click="addThread()">Add</button>
+</div>
+
+<table class="table">
+<thread>
+  <tr>
+    <th>Subject</th>
+  </tr>
+</thread>
+<tbody>
+  <tr ng-repeat='thread in threads'>
+    <td>{{thread.subject}}</td>
+  </tr>
+</tbody>
+</table>
