@@ -24,7 +24,7 @@ app.factory('$authObj', function($firebaseAuth, FB_URL) {
   return $firebaseAuth(ref);
 });
 
-app.service('$threads', function($firebaseArray, FB_URL) {
+app.service('$threads', function($firebaseArray, $firebaseObject, FB_URL) {
   var ref = new Firebase(FB_URL);
   var threadsRef = ref.child('threads');
 
@@ -42,6 +42,15 @@ app.service('$threads', function($firebaseArray, FB_URL) {
      });
   }
 
+  this.getThread = function(threadId) {
+    var singleThreadRef = threadsRef.child(threadId);
+    return $firebaseObject(singleThreadRef);
+  };
+
+  this.getPosts = function(threadId) {
+    var postsRef = threadsRef.child(threadId).child('posts');
+    return $firebaseArray(postsRef)
+  };
 });
 
 

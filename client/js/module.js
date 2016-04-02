@@ -25,9 +25,18 @@ app.config(function($stateProvider, $urlRouterProvider) {
       controller: 'threadsCtrl'
     })
     .state('thread-detail', {
-      url: '/thread-detail',
+      url: '/thread-detail/:threadId',
       templateUrl: '/html/threadDetail.html',
-      controller: 'threadDetailCtrl'
+      controller: 'threadDetailCtrl',
+      resolve: {
+        thread: function($threads,$stateParams) {
+          return $threads.getThread($stateParams.threadId).$loaded(); // $firebaseObject
+          // return the promise that will resolve into our loaded thread
+        },
+        posts: function($threads,$stateParams) {
+          return $threads.getPosts($stateParams.threadId).$loaded();
+        }
+      }
     })
 
   $urlRouterProvider.otherwise('/');

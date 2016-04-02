@@ -15,7 +15,7 @@
 </thread>
 <tbody>
   <tr ng-repeat='thread in threads'>
-    <td>{{thread.subject}}</td>
+    <td ui-sref="thread-detail({threadId: thread.$id})">{{thread.subject}}</td>
   </tr>
 </tbody>
 </table>
