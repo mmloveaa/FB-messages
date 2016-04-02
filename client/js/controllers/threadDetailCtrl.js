@@ -14,11 +14,20 @@ app.controller('threadDetailCtrl', function($scope, $state, thread, posts) {
   console.log('$scope.authData: ', $scope.authData)
 
   $scope.addThread = function() {
-
-    console.log( "new post!")
-    $scope.posts.$add($scope.newPost);
-    $scope.newPost = {};
+    if($scope.authData){
+      var newPost = {
+        text: $scope.newPost.text,
+        name: $scope.profile.name,
+        color: $scope.profile.color
+      };
+      $scope.posts.$add(newPost);
+      $scope.newPost = {};
+    }
   };
+});
+    // console.log( "new post!")
+    // $scope.posts.$add($scope.newPost);
+    // $scope.newPost = {};
 
   // $scope.remove = function() {
   //   $scope.thread.$remove().then(function() {
@@ -28,5 +37,3 @@ app.controller('threadDetailCtrl', function($scope, $state, thread, posts) {
   //     console.error(err);
   //   })
   // };
-
-});
