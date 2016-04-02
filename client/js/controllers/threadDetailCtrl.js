@@ -14,10 +14,10 @@ app.controller('threadDetailCtrl', function($scope, $state, thread, posts) {
   console.log('$scope.authData: ', $scope.authData)
 
   $scope.addThread = function() {
-    
+
     console.log( "new post!")
     $scope.posts.$add($scope.newPost);
-    // $scope.newPost = {};
+    $scope.newPost = {};
   };
 
   // $scope.remove = function() {
